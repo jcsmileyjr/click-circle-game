@@ -3,16 +3,17 @@ import React, {useState, useEffect} from 'react';
 import HiddenCircle from './components/HiddenCircle';
 
 function App() {
-  
+
   // TODO: If user clicks the HiddenCircle in time, update score
 
   const [randomizeArray, setRandomizeArray] = useState([]);
   const [animateCircle, setanimateCircle] = useState("");
   
   useEffect(() => { 
+    //Create array of numbers, then shuffle them, and finally save to global state
     const setupGame = () => {
-      let randomizeArrayOfNumbers = [];
-      for(let i=0;i<3;i++){
+      let randomizeArrayOfNumbers = [];      
+      for(let i=0;i<6;i++){
         randomizeArrayOfNumbers.push(i);
       }
       shuffleArray(randomizeArrayOfNumbers);
@@ -65,9 +66,9 @@ function App() {
           <HiddenCircle activate = {animateCircle === 2?true:false} />
         </section>
         <section className="row-of-hidden-circles">
-          <HiddenCircle />
-          <HiddenCircle />
-          <HiddenCircle />
+          <HiddenCircle activate = {animateCircle === 3?true:false} />
+          <HiddenCircle activate = {animateCircle === 4?true:false} />
+          <HiddenCircle activate = {animateCircle === 5?true:false} />
         </section>
       </footer>
     </div>
