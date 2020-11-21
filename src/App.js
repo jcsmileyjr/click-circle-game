@@ -10,13 +10,15 @@ function App() {
 
   //const [start, setStart] = useState(false);
   const [randomizeArray, setRandomizeArray] = useState([]);
-  const [currentArrayIndex, setArrayIndex] = useState(0);
+  const [hiddenCircle0, setHiddenCircle0] = useState(false);
+  const [hiddenCircle1, setHiddenCircle1] = useState(false);
+  const [hiddenCircle2, setHiddenCircle2] = useState(false);
   
   useEffect(() => { 
 
     const setupGame = () => {
       let randomizeArrayOfNumbers = [];
-      for(let i=0;i<6;i++){
+      for(let i=0;i<3;i++){
         randomizeArrayOfNumbers.push(i);
       }
       shuffleArray(randomizeArrayOfNumbers);
@@ -28,14 +30,25 @@ function App() {
   const startGame = () => {
     let count = 0;
     let interval = setInterval(function(){
-      console.log(randomizeArray[count]);
+      let currentCircle = randomizeArray[count]; // current random number from currnt index in array
+     
+      //Based on the random number, the hidden circle will pop up. 
+      if(currentCircle === 0){
+        setHiddenCircle0(true)
+      }else if(currentCircle === 1){
+        setHiddenCircle1(true);
+      }else{
+        setHiddenCircle2(true);
+      }
+
+      // Go to next index in array if less then length of array else ends interval
       if(count < randomizeArray.length){
         count++;
       }else{
         clearInterval(interval);
       }      
     }
-    ,2000);
+    ,1000);
   }
 
   //Durstenfeld shuffle technique from stack overflow
@@ -54,16 +67,16 @@ function App() {
       </header>
       <main>
         <p className="information-section-style"><span className="information-title-style">Score:</span> 100 </p>
-  <p className="information-section-style"><span className="information-title-style">Timer:</span> {currentArrayIndex} sec </p>
+        <p className="information-section-style"><span className="information-title-style">Timer:</span> 1.1 sec </p>
         <article className="center-text">
           <button className="button-style" onClick={() => startGame()}><label className="button-text">Play</label></button>
         </article>        
       </main>
       <footer>
         <section className="row-of-hidden-circles">
-          <HiddenCircle circleId={"1"} />
-          <HiddenCircle />
-          <HiddenCircle />
+          <HiddenCircle circleId={"1"} activate = {hiddenCircle0} />
+          <HiddenCircle activate = {hiddenCircle1} />
+          <HiddenCircle activate = {hiddenCircle2} />
         </section>
         <section className="row-of-hidden-circles">
           <HiddenCircle />

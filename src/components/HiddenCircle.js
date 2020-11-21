@@ -14,7 +14,7 @@ const HiddenCircle = (props) => {
     }
     return(
         <main className="circle-container" id={props.circleID}>
-            <section className={animateCircle?`inner-circle circle-animation`:`inner-circle `} onClick={startAnimation}></section>
+            <section className={props.activate?`inner-circle circle-animation`:`inner-circle `} onClick={startAnimation}></section>
         </main>
     );
 }
