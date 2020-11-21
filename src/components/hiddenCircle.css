@@ -1,6 +1,6 @@
 
 .circle-container {
-    border:2px solid #0101FD; /*Primary color of blue*/
+    border:1px solid #044FFF; /*Secondary shade of blue*/
     width: 30%;
     height: 10vh;
     display: flex;
@@ -9,8 +9,30 @@
 }
 
 .inner-circle {
-    border: .5px solid grey;
     border-radius: 50%;
     height: 70%;
     width:60%;
 }
+
+.circle-animation {
+    animation: popup 1s ease-out;
+}
+
+/*Circle pop up and down*/
+@keyframes popup {
+    0% {
+      transform: scale(1, 1);
+      border: .2px solid orange;
+      background-color: orange;
+    }
+    50% {
+      transform: scale(1.1, 1.1);
+      border: .5px solid red;
+      background-color: red;
+    }
+    100% {
+      transform: scale(1, 1);
+      border: .2px solid orange;
+      background-color: orange;
+    }
+  }
