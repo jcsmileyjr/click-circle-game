@@ -1,0 +1,16 @@
+
+.circle-container {
+    border:2px solid #0101FD; /*Primary color of blue*/
+    width: 30%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-circle {
+    border: .5px solid grey;
+    border-radius: 50%;
+    height: 70%;
+    width:60%;
+}

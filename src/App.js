@@ -1,5 +1,7 @@
 import './App.css';
 
+import HiddenCircle from './components/HiddenCircle';
+
 function App() {
   return (
     <div>
@@ -12,11 +14,19 @@ function App() {
         <p className="information-section-style"><span className="information-title-style">Timer:</span> 1.1 sec </p>
         <article className="center-text">
           <button className="button-style"><label className="button-text">Play</label></button>
-        </article>
-        
+        </article>        
       </main>
       <footer>
-
+        <section className="row-of-hidden-circles">
+          <HiddenCircle circleId={"1"} />
+          <HiddenCircle />
+          <HiddenCircle />
+        </section>
+        <section className="row-of-hidden-circles">
+          <HiddenCircle />
+          <HiddenCircle />
+          <HiddenCircle />
+        </section>
       </footer>
     </div>
   );

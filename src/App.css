@@ -28,7 +28,7 @@ h1 {
 }
 
 .information-title-style {
-  color: #0101FD;
+  color: #0101FD; /*Primary color of blue*/
   font-weight: bold;
   margin-right: 5px; /*Space between title and text*/
 }
@@ -44,5 +44,14 @@ h1 {
   font-weight: bold;
   font-size: large;
   color:white;
+}
+
+footer {
+  margin-top: 10px;
+}
+
+.row-of-hidden-circles {
+  display:flex;
+  justify-content: center;
 }
 
