@@ -33,3 +33,16 @@ h1 {
   margin-right: 5px; /*Space between title and text*/
 }
 
+.button-style {
+  background-color: green;
+  width: 40vw;
+  height: 5vh;
+
+}
+
+.button-text {
+  font-weight: bold;
+  font-size: large;
+  color:white;
+}
+
