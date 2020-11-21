@@ -1,23 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <h1 className="center-text">Click a Circle</h1>
+        <p className="instructions-style"><span className="instructions-title-style">Instructions</span>: Click the circle befofre it disappears. Each win adds 2 seconds to the timer</p>
       </header>
+      <main>
+        <p className="information-section-style"><span className="information-title-style">Score:</span> 100 </p>
+        <p className="information-section-style"><span className="information-title-style">Timer:</span> 1.1 sec </p>
+      </main>
+      <footer></footer>
     </div>
   );
 }
