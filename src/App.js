@@ -3,19 +3,13 @@ import React, {useState, useEffect} from 'react';
 import HiddenCircle from './components/HiddenCircle';
 
 function App() {
+  
+  // TODO: If user clicks the HiddenCircle in time, update score
 
-  //when app start, randomize an array of numbers
-  //Using an interval(), it starts the animation of a HiddenCircle
-  //If user clicks the HiddenCircle in time, update score
-
-  //const [start, setStart] = useState(false);
   const [randomizeArray, setRandomizeArray] = useState([]);
-  const [hiddenCircle0, setHiddenCircle0] = useState(false);
-  const [hiddenCircle1, setHiddenCircle1] = useState(false);
-  const [hiddenCircle2, setHiddenCircle2] = useState(false);
+  const [animateCircle, setanimateCircle] = useState("");
   
   useEffect(() => { 
-
     const setupGame = () => {
       let randomizeArrayOfNumbers = [];
       for(let i=0;i<3;i++){
@@ -30,16 +24,8 @@ function App() {
   const startGame = () => {
     let count = 0;
     let interval = setInterval(function(){
-      let currentCircle = randomizeArray[count]; // current random number from currnt index in array
-     
-      //Based on the random number, the hidden circle will pop up. 
-      if(currentCircle === 0){
-        setHiddenCircle0(true)
-      }else if(currentCircle === 1){
-        setHiddenCircle1(true);
-      }else{
-        setHiddenCircle2(true);
-      }
+      let currentCircle = randomizeArray[count]; // current random number from the currnt index in array
+      setanimateCircle(currentCircle); //set that random number to the global state to be calculated by each HiddenCircle
 
       // Go to next index in array if less then length of array else ends interval
       if(count < randomizeArray.length){
@@ -74,9 +60,9 @@ function App() {
       </main>
       <footer>
         <section className="row-of-hidden-circles">
-          <HiddenCircle circleId={"1"} activate = {hiddenCircle0} />
-          <HiddenCircle activate = {hiddenCircle1} />
-          <HiddenCircle activate = {hiddenCircle2} />
+          <HiddenCircle activate = {animateCircle === 0?true:false} />
+          <HiddenCircle activate = {animateCircle === 1?true:false} />
+          <HiddenCircle activate = {animateCircle === 2?true:false} />
         </section>
         <section className="row-of-hidden-circles">
           <HiddenCircle />
