@@ -8,6 +8,7 @@ function App() {
 
   const [randomizeArray, setRandomizeArray] = useState([]);
   const [animateCircle, setanimateCircle] = useState("");
+  const [score, updateScore] = useState(0);
   
   useEffect(() => { 
     //Create array of numbers, then shuffle them, and finally save to global state
@@ -41,7 +42,7 @@ function App() {
   // If the user click the animated circle, with correct id, within the time frame of the startGame(), then add to score
   const userClick = (e, id) => {
     if(animateCircle === id){
-      console.log("You hit it")
+      updateScore(score + 10);
     }else{
       console.log("You missed")
     }
@@ -62,7 +63,7 @@ function App() {
         <p className="instructions-style"><span className="instructions-title-style">Instructions</span>: Click the circle befofre it disappears. Each win adds 2 seconds to the timer</p>
       </header>
       <main>
-        <p className="information-section-style"><span className="information-title-style">Score:</span> 100 </p>
+        <p className="information-section-style"><span className="information-title-style">Score:</span> {score} </p>
         <p className="information-section-style"><span className="information-title-style">Timer:</span> 1.1 sec </p>
         <article className="center-text">
           <button className="button-style" onClick={() => startGame()}><label className="button-text">Play</label></button>
