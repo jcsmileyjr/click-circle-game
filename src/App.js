@@ -40,11 +40,9 @@ function App() {
   }
 
   // If the user click the animated circle, with correct id, within the time frame of the startGame(), then add to score
-  const userClick = (e, id) => {
+  const userClick = (id) => {
     if(animateCircle === id){
       updateScore(score + 10);
-    }else{
-      console.log("You missed")
     }
   }
 

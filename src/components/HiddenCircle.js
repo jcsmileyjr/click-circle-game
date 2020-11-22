@@ -6,15 +6,13 @@ import './hiddenCircle.css'
 // then global score is updated
 */
 const HiddenCircle = (props) => {
-
-    const tester = (e) => {
-        //console.log(props.circleId);
-        props.click(e, props.circleId);
+    const userChoice = () => {
+        props.click(props.circleId);
     }
 
     return(
         <main className="circle-container">
-            <section className={props.activate?`inner-circle circle-animation`:`inner-circle `} onClick={tester}></section>
+            <section className={props.activate?`inner-circle circle-animation`:`inner-circle `} onClick={userChoice}></section>
         </main>
     );
 }
