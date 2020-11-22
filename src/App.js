@@ -1,6 +1,8 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import HiddenCircle from './components/HiddenCircle';
+import winSound from './assets/clap.wav';
+import loseSound from './assets/kick.wav';
 
 function App() {
 
@@ -59,6 +61,11 @@ function App() {
       let tempCorrectArray = correct;
       tempCorrectArray.push(id);
       setCorrect(tempCorrectArray);// Create array of correct choices to update HiddenCircles components crown icon.
+      let audio = new Audio(winSound);
+      audio.play();
+    }else{
+      let audio = new Audio(loseSound);
+      audio.play();
     }
   }
 
