@@ -7,6 +7,7 @@ function App() {
   const [randomizeArray, setRandomizeArray] = useState([]);
   const [animateCircle, setanimateCircle] = useState("");
   const [score, updateScore] = useState(0);
+  const [correct, setCorrect] = useState([]);
   
   useEffect(() => { 
     //Create array of numbers, then shuffle them, and finally save to global state
@@ -42,6 +43,9 @@ function App() {
   const userClick = (id) => {
     if(animateCircle === id){
       updateScore(score + 10);
+      let tempCorrectArray = correct;
+      tempCorrectArray.push(id);
+      setCorrect(tempCorrectArray);// Create array of correct choices to update HiddenCircles components crown icon.
     }
   }
 
@@ -68,24 +72,24 @@ function App() {
       </main>
       <footer>
         <section className="row-of-hidden-circles">
-          <HiddenCircle activate = {animateCircle === 0?true:false} circleId={0} click={userClick} />
-          <HiddenCircle activate = {animateCircle === 1?true:false} circleId={1} click={userClick} />
-          <HiddenCircle activate = {animateCircle === 2?true:false} circleId={2} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 0?true:false} circleId={0} click={userClick} correctPicked={correct.includes(0)?true:false} />
+          <HiddenCircle activate = {animateCircle === 1?true:false} circleId={1} click={userClick} correctPicked={correct.includes(1)?true:false} />
+          <HiddenCircle activate = {animateCircle === 2?true:false} circleId={2} click={userClick} correctPicked={correct.includes(2)?true:false} />
         </section>
         <section className="row-of-hidden-circles">
-          <HiddenCircle activate = {animateCircle === 3?true:false} circleId={3} click={userClick} />
-          <HiddenCircle activate = {animateCircle === 4?true:false} circleId={4} click={userClick} />
-          <HiddenCircle activate = {animateCircle === 5?true:false} circleId={5} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 3?true:false} circleId={3} click={userClick} correctPicked={correct.includes(3)?true:false} />
+          <HiddenCircle activate = {animateCircle === 4?true:false} circleId={4} click={userClick} correctPicked={correct.includes(4)?true:false} />
+          <HiddenCircle activate = {animateCircle === 5?true:false} circleId={5} click={userClick} correctPicked={correct.includes(5)?true:false} />
         </section>
         <section className="row-of-hidden-circles">
-          <HiddenCircle activate = {animateCircle === 6?true:false} circleId={6} click={userClick} />
-          <HiddenCircle activate = {animateCircle === 7?true:false} circleId={7} click={userClick} />
-          <HiddenCircle activate = {animateCircle === 8?true:false} circleId={8} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 6?true:false} circleId={6} click={userClick} correctPicked={correct.includes(6)?true:false} />
+          <HiddenCircle activate = {animateCircle === 7?true:false} circleId={7} click={userClick} correctPicked={correct.includes(7)?true:false} />
+          <HiddenCircle activate = {animateCircle === 8?true:false} circleId={8} click={userClick} correctPicked={correct.includes(8)?true:false} />
         </section>
         <section className="row-of-hidden-circles">
-          <HiddenCircle activate = {animateCircle === 9?true:false} circleId={9} click={userClick} />
-          <HiddenCircle activate = {animateCircle === 10?true:false} circleId={10} click={userClick} />
-          <HiddenCircle activate = {animateCircle === 11?true:false} circleId={11} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 9?true:false} circleId={9} click={userClick} correctPicked={correct.includes(9)?true:false} />
+          <HiddenCircle activate = {animateCircle === 10?true:false} circleId={10} click={userClick} correctPicked={correct.includes(10)?true:false} />
+          <HiddenCircle activate = {animateCircle === 11?true:false} circleId={11} click={userClick} correctPicked={correct.includes(11)?true:false} />
         </section>                
       </footer>
     </div>
