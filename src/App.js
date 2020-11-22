@@ -12,12 +12,14 @@ function App() {
   const [score, updateScore] = useState(0);
   const [correct, setCorrect] = useState([]);
   const [difficulty, setDifficulty] = useState("easy");
+  const [disablePlayButton, setDisablePlayButton] = useState(false);
   
   useEffect(() => { setupGame(setRandomizeArray)}, []);
 
   const startGame = () => {
     updateScore(0); // Reset the score
-    setCorrect([]) // Reset showing crowns icons for correct choicesf
+    setCorrect([]) // Reset showing crowns icons for correct choices
+    setDisablePlayButton(true); //disable play button to prevent mulitple presses
     let speed = determineDifficulty();
     let count = 0;
     let interval = setInterval(function(){
@@ -28,6 +30,7 @@ function App() {
       if(count < randomizeArray.length-1){
         count++;
       }else{
+        setDisablePlayButton(false);
         setupGame(setRandomizeArray)
         clearInterval(interval);
       }      
@@ -71,7 +74,7 @@ function App() {
           <p className="information-section-style"><span className="information-title-style">Score:</span> {score}/120 </p>
           {/*<p className="information-section-style"><span className="information-title-style">Timer:</span> 1.1 sec </p>*/}
           <article className="center-text">
-            <button className="button-style" onClick={() => startGame()}><label className="button-text">Play</label></button>
+            <button className="button-style" disabled={disablePlayButton} onClick={() => startGame()}><label className="button-text">Play</label></button>
           </article>        
         </main>
         <footer>
