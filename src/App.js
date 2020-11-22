@@ -38,6 +38,15 @@ function App() {
     ,1000);
   }
 
+  // If the user click the animated circle, with correct id, within the time frame of the startGame(), then add to score
+  const userClick = (e, id) => {
+    if(animateCircle === id){
+      console.log("You hit it")
+    }else{
+      console.log("You missed")
+    }
+  }
+
   //Durstenfeld shuffle technique from stack overflow
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -61,14 +70,14 @@ function App() {
       </main>
       <footer>
         <section className="row-of-hidden-circles">
-          <HiddenCircle activate = {animateCircle === 0?true:false} />
-          <HiddenCircle activate = {animateCircle === 1?true:false} />
-          <HiddenCircle activate = {animateCircle === 2?true:false} />
+          <HiddenCircle activate = {animateCircle === 0?true:false} circleId={0} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 1?true:false} circleId={1} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 2?true:false} circleId={2} click={userClick} />
         </section>
         <section className="row-of-hidden-circles">
-          <HiddenCircle activate = {animateCircle === 3?true:false} />
-          <HiddenCircle activate = {animateCircle === 4?true:false} />
-          <HiddenCircle activate = {animateCircle === 5?true:false} />
+          <HiddenCircle activate = {animateCircle === 3?true:false} circleId={3} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 4?true:false} circleId={4} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 5?true:false} circleId={5} click={userClick} />
         </section>
       </footer>
     </div>

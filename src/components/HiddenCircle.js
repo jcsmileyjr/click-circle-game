@@ -6,15 +6,15 @@ import './hiddenCircle.css'
 // then global score is updated
 */
 const HiddenCircle = (props) => {
-    const [animateCircle, showAnimateCircle] = useState(false); // Start the animation
 
-    // Function to start and stop the animation and allow user to score
-    const startAnimation =() => {
-        showAnimateCircle(true)
+    const tester = (e) => {
+        //console.log(props.circleId);
+        props.click(e, props.circleId);
     }
+
     return(
         <main className="circle-container">
-            <section className={props.activate?`inner-circle circle-animation`:`inner-circle `} onClick={startAnimation}></section>
+            <section className={props.activate?`inner-circle circle-animation`:`inner-circle `} onClick={tester}></section>
         </main>
     );
 }
