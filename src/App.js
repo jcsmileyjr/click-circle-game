@@ -4,8 +4,6 @@ import HiddenCircle from './components/HiddenCircle';
 
 function App() {
 
-  // TODO: If user clicks the HiddenCircle in time, update score
-
   const [randomizeArray, setRandomizeArray] = useState([]);
   const [animateCircle, setanimateCircle] = useState("");
   const [score, updateScore] = useState(0);
@@ -14,7 +12,7 @@ function App() {
     //Create array of numbers, then shuffle them, and finally save to global state
     const setupGame = () => {
       let randomizeArrayOfNumbers = [];      
-      for(let i=0;i<6;i++){
+      for(let i=0;i<12;i++){
         randomizeArrayOfNumbers.push(i);
       }
       shuffleArray(randomizeArrayOfNumbers);
@@ -24,6 +22,7 @@ function App() {
   setupGame()}, []);
 
   const startGame = () => {
+    updateScore(0); // Reset the score
     let count = 0;
     let interval = setInterval(function(){
       let currentCircle = randomizeArray[count]; // current random number from the currnt index in array
@@ -78,6 +77,16 @@ function App() {
           <HiddenCircle activate = {animateCircle === 4?true:false} circleId={4} click={userClick} />
           <HiddenCircle activate = {animateCircle === 5?true:false} circleId={5} click={userClick} />
         </section>
+        <section className="row-of-hidden-circles">
+          <HiddenCircle activate = {animateCircle === 6?true:false} circleId={6} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 7?true:false} circleId={7} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 8?true:false} circleId={8} click={userClick} />
+        </section>
+        <section className="row-of-hidden-circles">
+          <HiddenCircle activate = {animateCircle === 9?true:false} circleId={9} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 10?true:false} circleId={10} click={userClick} />
+          <HiddenCircle activate = {animateCircle === 11?true:false} circleId={11} click={userClick} />
+        </section>                
       </footer>
     </div>
   );
