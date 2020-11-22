@@ -35,7 +35,7 @@ function App() {
       setanimateCircle(currentCircle); //set that random number to the global state to be calculated by each HiddenCircle
 
       // Go to next index in array if less then length of array else ends interval
-      if(count < randomizeArray.length){
+      if(count < randomizeArray.length-1){
         count++;
       }else{
         clearInterval(interval);
