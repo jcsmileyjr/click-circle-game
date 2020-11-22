@@ -72,7 +72,6 @@ function App() {
         </header>
         <main>
           <p className="information-section-style"><span className="information-title-style">Score:</span> {score}/120 </p>
-          {/*<p className="information-section-style"><span className="information-title-style">Timer:</span> 1.1 sec </p>*/}
           <article className="center-text">
             <button className="button-style" disabled={disablePlayButton} onClick={() => startGame()}><label className="button-text">Play</label></button>
           </article>        
