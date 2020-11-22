@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import HiddenCircle from './components/HiddenCircle';
 import winSound from './assets/clap.wav';
 import loseSound from './assets/kick.wav';
+import {setupGame} from './js/setupGameFunctions';
 
 function App() {
 
@@ -11,23 +12,14 @@ function App() {
   const [score, updateScore] = useState(0);
   const [correct, setCorrect] = useState([]);
   const [difficulty, setDifficulty] = useState("easy");
+  const [disablePlayButton, setDisablePlayButton] = useState(false);
   
-  useEffect(() => { 
-    //Create array of numbers, then shuffle them, and finally save to global state
-    const setupGame = () => {
-      let randomizeArrayOfNumbers = [];      
-      for(let i=0;i<12;i++){
-        randomizeArrayOfNumbers.push(i);
-      }
-      shuffleArray(randomizeArrayOfNumbers);
-      setRandomizeArray(randomizeArrayOfNumbers);
-    }
-
-  setupGame()}, []);
+  useEffect(() => { setupGame(setRandomizeArray)}, []);
 
   const startGame = () => {
     updateScore(0); // Reset the score
-    setCorrect([]) // Reset showing crowns icons for correct choicesf
+    setCorrect([]) // Reset showing crowns icons for correct choices
+    setDisablePlayButton(true); //disable play button to prevent mulitple presses
     let speed = determineDifficulty();
     let count = 0;
     let interval = setInterval(function(){
@@ -35,9 +27,11 @@ function App() {
       setanimateCircle(currentCircle); //set that random number to the global state to be calculated by each HiddenCircle
 
       // Go to next index in array if less then length of array else ends interval
-      if(count < randomizeArray.length){
+      if(count < randomizeArray.length-1){
         count++;
       }else{
+        setDisablePlayButton(false);
+        setupGame(setRandomizeArray)
         clearInterval(interval);
       }      
     }
@@ -69,14 +63,6 @@ function App() {
     }
   }
 
-  //Durstenfeld shuffle technique from stack overflow
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-  }
-
   return (
     <div className="app">
       <section className="container">
@@ -86,9 +72,8 @@ function App() {
         </header>
         <main>
           <p className="information-section-style"><span className="information-title-style">Score:</span> {score}/120 </p>
-          {/*<p className="information-section-style"><span className="information-title-style">Timer:</span> 1.1 sec </p>*/}
           <article className="center-text">
-            <button className="button-style" onClick={() => startGame()}><label className="button-text">Play</label></button>
+            <button className="button-style" disabled={disablePlayButton} onClick={() => startGame()}><label className="button-text">Play</label></button>
           </article>        
         </main>
         <footer>
