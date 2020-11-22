@@ -8,8 +8,7 @@ h1 {
 }
 
 .instructions-style {
-  margin-left: 10vw;
-  margin-right: 10vw;
+  margin-left: 3vw;
 }
 
 .instructions-title-style {
@@ -21,10 +20,10 @@ h1 {
   color: grey;
 }
 
-/*center the section but still right aligned*/
+/*center the text*/
 .information-section-style {
-  margin-left: 30vw;
-  margin-right: 30vw;
+  display: flex;
+  justify-content: center;
 }
 
 .information-title-style {
@@ -37,7 +36,7 @@ h1 {
   background-color: green;
   width: 40vw;
   height: 5vh;
-
+  margin-top: 5vh;
 }
 
 .button-text {
@@ -47,11 +46,55 @@ h1 {
 }
 
 footer {
-  margin-top: 10px;
+  margin-top: 10vh;
 }
 
 .row-of-hidden-circles {
   display:flex;
   justify-content: center;
+}
+
+.difficult-section {
+  margin-top: 1vh;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+}
+
+/*large screens*/
+@media only screen and (min-width: 767px) {
+  
+}
+
+/*larger screens*/
+@media only screen and (min-width: 836px) {
+  .container {
+    height: 100%;
+    width: 40%;
+  }
+
+  .button-style {
+    background-color: green;
+    width: 10vw;
+    height: 5vh;
+    margin-top: 5vh;
+  }
+
+  .difficult-section {
+    margin-top: 5vh;
+  }
+
+  .instructions-style {
+    margin-left: 6vw;
+  }
+}
+
+/*larger screens*/
+@media only screen and (min-width: 1250px) {
+  .instructions-style {
+    margin-left: 10vw;
+  }
 }
 
