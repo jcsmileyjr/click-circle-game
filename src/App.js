@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import HiddenCircle from './components/HiddenCircle';
 import winSound from './assets/clap.wav';
 import loseSound from './assets/kick.wav';
+import {setupGame} from './js/setupGameFunctions';
 
 function App() {
 
@@ -12,18 +13,7 @@ function App() {
   const [correct, setCorrect] = useState([]);
   const [difficulty, setDifficulty] = useState("easy");
   
-  useEffect(() => { 
-    //Create array of numbers, then shuffle them, and finally save to global state
-    const setupGame = () => {
-      let randomizeArrayOfNumbers = [];      
-      for(let i=0;i<12;i++){
-        randomizeArrayOfNumbers.push(i);
-      }
-      shuffleArray(randomizeArrayOfNumbers);
-      setRandomizeArray(randomizeArrayOfNumbers);
-    }
-
-  setupGame()}, []);
+  useEffect(() => { setupGame(setRandomizeArray)}, []);
 
   const startGame = () => {
     updateScore(0); // Reset the score
@@ -38,6 +28,7 @@ function App() {
       if(count < randomizeArray.length-1){
         count++;
       }else{
+        setupGame(setRandomizeArray)
         clearInterval(interval);
       }      
     }
@@ -66,14 +57,6 @@ function App() {
     }else{
       let audio = new Audio(loseSound);
       audio.play();
-    }
-  }
-
-  //Durstenfeld shuffle technique from stack overflow
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
     }
   }
 
