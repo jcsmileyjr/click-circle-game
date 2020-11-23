@@ -30,6 +30,7 @@ function App() {
       if(count < randomizeArray.length-1){
         count++;
       }else{
+        setanimateCircle("") // Bug: User can continue hitting last square to rack up points. 
         setDisablePlayButton(false);
         setupGame(setRandomizeArray)
         clearInterval(interval);
