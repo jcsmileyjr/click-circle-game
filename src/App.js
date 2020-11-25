@@ -29,7 +29,12 @@ function App() {
 
       // Go to next index in array if less then length of array else ends interval
       if(count < randomizeArray.length-1){
+        //reset the display crowns every 12 counts
+        if(count % 12 === 0){
+          setCorrect([]);
+        }
         count++;
+        
       }else{
         setanimateCircle("") // Bug: User can continue hitting last square to rack up points. 
         setDisablePlayButton(false);
@@ -86,7 +91,7 @@ function App() {
           <p className="instructions-style"><span className="instructions-title-style">Instructions</span>: Click the circle before it disappears. </p>
         </header>
         <main>
-          <p className="information-section-style"><span className="information-title-style">Score:</span> {score}/120 </p>
+          <p className="information-section-style"><span className="information-title-style">Score:</span> {score} </p>
           <p className="information-section-style"><span className="information-title-style">Level:</span> {currentLevel} </p>
           <article className="center-text">
             <button className="button-style" disabled={disablePlayButton} onClick={() => startGame()}><label className="button-text">Play</label></button>
