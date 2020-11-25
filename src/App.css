@@ -24,6 +24,7 @@ h1 {
 .information-section-style {
   display: flex;
   justify-content: center;
+  font-weight: 900;
 }
 
 .information-title-style {
