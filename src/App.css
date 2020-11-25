@@ -98,3 +98,7 @@ footer {
   }
 }
 
+.hidePlayButton {
+  display: none;
+}
+

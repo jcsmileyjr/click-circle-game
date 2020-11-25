@@ -93,7 +93,7 @@ function App() {
         <main>
           <p className="information-section-style"><span className="information-title-style">Score:</span> {score} </p>
           <p className="information-section-style"><span className="information-title-style">Level:</span> {currentLevel} </p>
-          <article className="center-text">
+          <article className={disablePlayButton?"center-text hidePlayButton":"center-text"}>
             <button className="button-style" disabled={disablePlayButton} onClick={() => startGame()}><label className="button-text">Play</label></button>
           </article>        
         </main>
