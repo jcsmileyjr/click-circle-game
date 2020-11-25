@@ -24,6 +24,7 @@ h1 {
 .information-section-style {
   display: flex;
   justify-content: center;
+  font-weight: 900;
 }
 
 .information-title-style {
@@ -61,6 +62,7 @@ footer {
 .app {
   display: flex;
   justify-content: center;
+  height: 100vh;
 }
 
 /*large screens*/
@@ -96,5 +98,26 @@ footer {
   .instructions-style {
     margin-left: 10vw;
   }
+}
+
+.hidePlayButton {
+  display: none;
+}
+
+.pineGreen {
+  background-color: #d6faed;
+  
+}
+
+.burntOrange {
+  background-color: #f5e3c7;
+}
+
+.deepPurple {
+  background-color: #ecdafa;
+}
+
+.white {
+  background-color: white;
 }
 

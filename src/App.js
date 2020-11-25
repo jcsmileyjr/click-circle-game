@@ -13,6 +13,8 @@ function App() {
   const [correct, setCorrect] = useState([]);
   const [difficulty, setDifficulty] = useState("easy");
   const [disablePlayButton, setDisablePlayButton] = useState(false);
+  const [currentLevel, updateLevel] = useState(1);
+  const [levelColor, setLevelColor] = useState("white");
   
   useEffect(() => { setupGame(setRandomizeArray)}, []);
 
@@ -28,12 +30,18 @@ function App() {
 
       // Go to next index in array if less then length of array else ends interval
       if(count < randomizeArray.length-1){
+        //reset the display crowns every 12 counts
+        if(count % 12 === 0){
+          setCorrect([]);
+        }
         count++;
+        
       }else{
         setanimateCircle("") // Bug: User can continue hitting last square to rack up points. 
         setDisablePlayButton(false);
         setupGame(setRandomizeArray)
         clearInterval(interval);
+        setLevelColor("white")
       }      
     }
     ,speed);
@@ -49,6 +57,21 @@ function App() {
     }
   }
 
+  const increaseLevel = () => {
+    if(score >=340){
+      updateLevel(4);
+      setLevelColor("deepPurple")
+    }else if(score >= 220){
+      updateLevel(3)
+      setLevelColor("burntOrange")
+    }else if(score >=100){
+      updateLevel(2)
+      setLevelColor("pineGreen")
+    }else{
+      return;
+    }
+  }
+
   // If the user click the animated circle, with correct id, within the time frame of the startGame(), then add to score
   const userClick = (id) => {
     if(animateCircle === id){
@@ -58,6 +81,7 @@ function App() {
       setCorrect(tempCorrectArray);// Create array of correct choices to update HiddenCircles components crown icon.
       let audio = new Audio(winSound);
       audio.play();
+      increaseLevel();
     }else{
       let audio = new Audio(loseSound);
       audio.play();
@@ -65,15 +89,16 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className={`app ${levelColor}`}>
       <section className="container">
         <header>
           <h1 className="center-text">Click a Circle</h1>
           <p className="instructions-style"><span className="instructions-title-style">Instructions</span>: Click the circle before it disappears. </p>
         </header>
         <main>
-          <p className="information-section-style"><span className="information-title-style">Score:</span> {score}/120 </p>
-          <article className="center-text">
+          <p className="information-section-style"><span className="information-title-style">Score:</span> {score}/480 </p>
+          <p className="information-section-style"><span className="information-title-style">Level:</span> {currentLevel} </p>
+          <article className={disablePlayButton?"center-text hidePlayButton":"center-text"}>
             <button className="button-style" disabled={disablePlayButton} onClick={() => startGame()}><label className="button-text">Play</label></button>
           </article>        
         </main>
