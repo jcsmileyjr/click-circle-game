@@ -13,6 +13,7 @@ function App() {
   const [correct, setCorrect] = useState([]);
   const [difficulty, setDifficulty] = useState("easy");
   const [disablePlayButton, setDisablePlayButton] = useState(false);
+  const [currentLevel, updateLevel] = useState(1);
   
   useEffect(() => { setupGame(setRandomizeArray)}, []);
 
@@ -49,6 +50,18 @@ function App() {
     }
   }
 
+  const increaseLevel = () => {
+    if(score >=340){
+      updateLevel(4);
+    }else if(score >= 220){
+      updateLevel(3)
+    }else if(score >=100){
+      updateLevel(2)
+    }else{
+      return;
+    }
+  }
+
   // If the user click the animated circle, with correct id, within the time frame of the startGame(), then add to score
   const userClick = (id) => {
     if(animateCircle === id){
@@ -58,6 +71,7 @@ function App() {
       setCorrect(tempCorrectArray);// Create array of correct choices to update HiddenCircles components crown icon.
       let audio = new Audio(winSound);
       audio.play();
+      increaseLevel();
     }else{
       let audio = new Audio(loseSound);
       audio.play();
@@ -73,6 +87,7 @@ function App() {
         </header>
         <main>
           <p className="information-section-style"><span className="information-title-style">Score:</span> {score}/120 </p>
+          <p className="information-section-style"><span className="information-title-style">Level:</span> {currentLevel} </p>
           <article className="center-text">
             <button className="button-style" disabled={disablePlayButton} onClick={() => startGame()}><label className="button-text">Play</label></button>
           </article>        
