@@ -14,6 +14,7 @@ function App() {
   const [difficulty, setDifficulty] = useState("easy");
   const [disablePlayButton, setDisablePlayButton] = useState(false);
   const [currentLevel, updateLevel] = useState(1);
+  const [levelColor, setLevelColor] = useState("white");
   
   useEffect(() => { setupGame(setRandomizeArray)}, []);
 
@@ -40,6 +41,7 @@ function App() {
         setDisablePlayButton(false);
         setupGame(setRandomizeArray)
         clearInterval(interval);
+        setLevelColor("white")
       }      
     }
     ,speed);
@@ -58,10 +60,13 @@ function App() {
   const increaseLevel = () => {
     if(score >=340){
       updateLevel(4);
+      setLevelColor("deepPurple")
     }else if(score >= 220){
       updateLevel(3)
+      setLevelColor("burntOrange")
     }else if(score >=100){
       updateLevel(2)
+      setLevelColor("pineGreen")
     }else{
       return;
     }
@@ -84,14 +89,14 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className={`app ${levelColor}`}>
       <section className="container">
         <header>
           <h1 className="center-text">Click a Circle</h1>
           <p className="instructions-style"><span className="instructions-title-style">Instructions</span>: Click the circle before it disappears. </p>
         </header>
         <main>
-          <p className="information-section-style"><span className="information-title-style">Score:</span> {score} </p>
+          <p className="information-section-style"><span className="information-title-style">Score:</span> {score}/480 </p>
           <p className="information-section-style"><span className="information-title-style">Level:</span> {currentLevel} </p>
           <article className={disablePlayButton?"center-text hidePlayButton":"center-text"}>
             <button className="button-style" disabled={disablePlayButton} onClick={() => startGame()}><label className="button-text">Play</label></button>
