@@ -22,6 +22,7 @@ function App() {
     updateScore(0); // Reset the score
     setCorrect([]) // Reset showing crowns icons for correct choices
     setDisablePlayButton(true); //disable play button to prevent mulitple presses
+    updateLevel(1);
     let speed = determineDifficulty();
     let count = 0;
     let interval = setInterval(function(){
